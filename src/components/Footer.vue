@@ -1,0 +1,83 @@
+<template>
+    <div class="footer">
+        <router-link tag="div" to="/home" class="btn" active-class="active">
+            <i class="iconfont iconzhuye"></i>
+            <span>主页</span>
+        </router-link>
+        <router-link tag="div" to="/collection" class="btn" active-class="active">
+            <i class="iconfont iconshoucangjia"></i>
+            <span>收藏夹</span>
+        </router-link>
+        <router-link tag="div" to="/mine" class="btn" active-class="active">
+            <mt-badge v-if="new_msg_count != 0 && is_login" class="badge" type="error" size="small">{{ new_msg_count }}</mt-badge>
+            <i class="iconfont icontouxiang"></i>
+            <span>我的</span>
+        </router-link>
+    </div>
+</template>
+
+<script>
+    import Vue from "vue";
+    import {
+        Badge
+    } from "mint-ui";
+    Vue.component(Badge.name, Badge);
+    //   import store from '@/store/store'
+    export default {
+        props: {
+            new_msg_count: {
+                type: Number,
+                default: 0
+            },
+            is_login: {
+                type: Boolean,
+                default: false
+            }
+        },
+        data() {
+            return {};
+        }
+    };
+</script>
+
+<style scoped lang="scss">
+    .footer {
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        z-index: 1000;
+        display: flex;
+        justify-content: space-around;
+        width: 100%;
+        height: 1rem;
+        background: aquamarine;
+        justify-content: space-around;
+
+        .btn {
+            position: relative;
+            font-size: .3rem;
+            font-weight: bolder;
+            height: 1rem;
+            // line-height: 0.5rem;
+            width: 40%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            i{
+                font-size: .4rem;
+            }
+            &.active {
+                font-size: 0.33rem;
+                color: #0080f6;
+            }
+
+            .badge {
+                line-height: normal;
+                position: absolute;
+                top: 5%;
+                left: 65%;
+            }
+        }
+    }
+</style>
