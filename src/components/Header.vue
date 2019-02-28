@@ -39,7 +39,7 @@
     z-index: 1000;
     width: 100%;
     height: 0.9rem;
-    background-color: aquamarine;
+   background-color: aliceblue;
     text-align: center;
     font-weight: bolder;
     font-size: 0.4rem;

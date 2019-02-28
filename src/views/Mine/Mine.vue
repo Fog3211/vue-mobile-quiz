@@ -20,12 +20,18 @@
         </p>
       <mt-badge v-if="item.name=='消息'&& new_msg_count!=0" type="error" size="large">{{ new_msg_count}}</mt-badge>
       </router-link>
+      <div class="item" @click="loginOut()">
+      <p class="item-title">
+          <span class="myicon iconfont icontuichu login-out"></span> <span class="title" >退出登录</span>
+        </p>
+        </div>
     </div>
     <Footer></Footer>
   </div>
 </template>
 
 <script>
+import { MessageBox } from 'mint-ui';
   import Header from "_c/Header.vue";
   import Footer from "_c/Footer.vue";
   export default {
@@ -68,13 +74,6 @@
           icon_color: {
             color: '#724EEC'
           }
-        },{
-          name: '退出登录',
-          path: '/mine/exit',
-          icon: 'icontuichu',
-          icon_color: {
-            color: '#C43E57'
-          }
         }],
         new_msg_count:10
       };
@@ -82,6 +81,13 @@
     methods: {
       changeAvatar() {
 
+      },
+      loginOut(){
+         MessageBox.confirm("确定注销登录?")
+                    .then(action => {
+                        this.$router.push('home');
+                    })
+                    .catch(error => {});
       }
     }
   };
@@ -155,7 +161,7 @@
         padding: 0 .3rem;
         border-bottom: 0.06rem solid #f1f1f1;
         &:active{
-          background-color: #dadada;
+          background-color: aliceblue;
         }
         .myicon {
           display: inline-block;
@@ -166,6 +172,9 @@
         .title {
           margin-left: .25rem;
           vertical-align: middle;
+        }
+        .login-out{
+          color:#C43E57;
         }
       }
     }

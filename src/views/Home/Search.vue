@@ -40,6 +40,7 @@
 </template>
 
 <script>
+import { MessageBox } from 'mint-ui';
     import Header from "_c/Header.vue";
     export default {
         components: {

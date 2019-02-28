@@ -59,7 +59,7 @@
       color: #b7b7b7;
       width: 95vw;
       height: 0.75rem;
-      background: aliceblue;
+     background-color: aliceblue;
       border-radius: 0.3rem;
     }
 

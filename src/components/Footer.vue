@@ -45,7 +45,7 @@
         justify-content: space-around;
         width: 100%;
         height: 1.2rem;
-        background: aquamarine;
+        background-color: aliceblue;
         justify-content: space-around;
 
         .btn {
