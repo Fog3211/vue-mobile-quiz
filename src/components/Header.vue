@@ -49,6 +49,10 @@
       position: absolute;
       font-size: 0.6rem;
       left: 0.2rem;
+       color: #8d8c91;
+      &:active{
+        color: #a3a3a3;
+      }
     }
   }
 

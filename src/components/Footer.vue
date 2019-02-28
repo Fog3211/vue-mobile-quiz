@@ -17,11 +17,6 @@
 </template>
 
 <script>
-    import Vue from "vue";
-    import {
-        Badge
-    } from "mint-ui";
-    Vue.component(Badge.name, Badge);
     //   import store from '@/store/store'
     export default {
         props: {
@@ -49,7 +44,7 @@
         display: flex;
         justify-content: space-around;
         width: 100%;
-        height: 1rem;
+        height: 1.2rem;
         background: aquamarine;
         justify-content: space-around;
 
@@ -57,18 +52,18 @@
             position: relative;
             font-size: .3rem;
             font-weight: bolder;
-            height: 1rem;
-            // line-height: 0.5rem;
+            height: 1.2rem;
             width: 40%;
             display: flex;
             justify-content: center;
             align-items: center;
             flex-direction: column;
-            i{
-                font-size: .4rem;
+            .iconfont{
+                font-size: .5rem;
+                padding-bottom: .1rem;
             }
             &.active {
-                font-size: 0.33rem;
+                font-size: 0.4rem;
                 color: #0080f6;
             }
 
