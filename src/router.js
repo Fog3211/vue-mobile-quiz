@@ -32,15 +32,26 @@ export default new Router({
       path: '/mine/theme',
       name: 'theme',
       component: () => import('_v/Mine/other/Theme.vue')
-    }, {
+    }, 
+    {
       path: '/mine/detail',
       component: () => import('_v/Mine/other/Detail.vue')
-    }, {
+    }, 
+    {
       path: '/mine/message',
       component: () => import('_v/Mine/other/Message.vue')
-    }, {
+    }, 
+    {
       path: '/mine/about',
       component: () => import('_v/Mine/other/About.vue')
+    },
+    {
+      path: '/login',
+      component: () => import('_v/Mine/login/Login.vue')
+    },
+    {
+      path: '/register',
+      component: () => import('_v/Mine/login/Register.vue')
     }
   ]
 })

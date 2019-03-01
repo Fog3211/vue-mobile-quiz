@@ -13,9 +13,9 @@ import '_a/font/iconfont.css'
 
 Vue.config.productionTip = false;
 
-import {  Badge, Swipe, SwipeItem ,Search, } from "mint-ui";
+import {  Badge, Swipe, SwipeItem ,Search, Field } from "mint-ui";
 
-
+Vue.component(Field.name, Field);
 Vue.component(Badge.name, Badge);
 Vue.component(Swipe.name, Swipe);
 Vue.component(SwipeItem.name, SwipeItem);

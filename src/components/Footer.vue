@@ -44,7 +44,7 @@
         display: flex;
         justify-content: space-around;
         width: 100%;
-        height: 1.2rem;
+        height: 1rem;
         background-color: aliceblue;
         justify-content: space-around;
 
@@ -52,7 +52,7 @@
             position: relative;
             font-size: .3rem;
             font-weight: bolder;
-            height: 1.2rem;
+            height: 1rem;
             width: 40%;
             display: flex;
             justify-content: center;

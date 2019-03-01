@@ -59,7 +59,10 @@ export default {
   },
   methods: {
     themeSelect(item) {
-      Toast("主题更改成功！");
+      Toast({
+        message: "主题更改成功！",
+        position: "bottom"
+      });
     }
   }
 };
