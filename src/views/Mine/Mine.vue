@@ -20,9 +20,9 @@
         </p>
       <mt-badge v-if="item.name=='消息'&& new_msg_count!=0" type="error" size="large">{{ new_msg_count}}</mt-badge>
       </router-link>
-      <div class="item" @click="loginOut()">
+      <div class="item" @click="logout()">
       <p class="item-title">
-          <span class="myicon iconfont icontuichu login-out"></span> <span class="title" >退出登录</span>
+          <span class="myicon iconfont icontuichu logout"></span> <span class="title" >退出登录</span>
         </p>
         </div>
     </div>
@@ -82,7 +82,7 @@ import { MessageBox } from 'mint-ui';
       changeAvatar() {
 
       },
-      loginOut(){
+      logout(){
          MessageBox.confirm("确定注销登录?")
                     .then(action => {
                         this.$router.push('home');
@@ -173,7 +173,7 @@ import { MessageBox } from 'mint-ui';
           margin-left: .25rem;
           vertical-align: middle;
         }
-        .login-out{
+        .logout{
           color:#C43E57;
         }
       }

@@ -1,135 +1,162 @@
 <template>
   <div class="page">
-    <Header :title="title"></Header>
-      <router-link to="/register" class="register-btn">注册</router-link>
-    <div class="login-form">
+    <Header :title="title" :showBack="true">
+      <router-link to="/login" class="login-btn">登录</router-link>
+    </Header>
+    <div class="register-form" @keyup.enter="register">
       <p>
         <label>用户名</label>
-        <input type="text" v-model="user_name">
+        <input
+          type="text"
+          v-model="register_form.username"
+          placeholder="请输入用户名"
+          maxlength="10"
+        />
       </p>
       <p>
         <label>密码</label>
-        <input type="password" v-model="password">
+        <input
+          type="password"
+          v-model="register_form.password"
+          placeholder="请输入密码"
+          maxlength="16"
+        />
       </p>
-      <div class="submit-btn" @click="login">登录</div>
-      <span class="forget-pwd-btn">忘记密码</span>
+      <p>
+        <label>重复密码</label>
+        <input
+          type="password"
+          v-model="register_form.repassword"
+          placeholder="请再次输入密码"
+          maxlength="16"
+        />
+      </p>
+      <button class="submit-btn" @click="register">注册</button>
     </div>
   </div>
 </template>
 
 <script>
-  import Header from '_c/Header.vue'
+import Header from "_c/Header.vue";
   import {
+    Indicator,
     Toast
-  } from 'mint-ui'
-  export default {
-    components: {
-      Header
-    },
-    data() {
-      return {
-          title:"注册",
-        user_name: "",
+  } from "mint-ui";
+   import Service from "@/service/service.js";
+export default {
+  components: {
+    Header
+  },
+  data() {
+    return {
+      title: "注册",
+      register_form: {
+        username: "",
         password: "",
-        go_back_home: false
+        repassword: ""
       }
-    },
-    methods: {
-      login() {
-        if (!this.user_name || !this.password) return
-        this.common.showLoading()
-        Service.login({
-          user_name: this.user_name,
-          password: this.password
-        }).then((res) => {
-          this.common.hideLoading()
-          if (res.data.retCode == 0) {
-            store.commit('loginSuccess', res.data.user)
-            //跳转到需要登录前提的目标的页面
-            console.log('跳转到需要登录前提的目标的页面')
-            this.$router.replace({
-              path: this.$route.query.redirect
-            })
-          } else if (res.data.retCode == 40401) {
-            tipModule.showToast('用户名或密码有误')
+    };
+  },
+  methods: {
+    register() {
+      // 表单校验
+      if (
+        !this.register_form.username ||
+        !this.register_form.username.trim() ||
+        !this.register_form.password ||
+        !this.register_form.repassword
+      ) {
+        Toast("用户名和密码不能为空");
+        return;
+      } else if (this.register_form.repassword !== this.register_form.password) {
+        Toast("两次密码不一致");
+        return;
+      }else if(this.register_form.password.length<6){
+        Toast("密码长度不能小于6");
+        return;
+      }
+      Indicator.open();
+
+      // 延时1s发送
+      setTimeout(() => {
+        Service.register(this.register_form).then(res => {
+          Indicator.close();
+          if (!res) {
+            // console.log("error");
+            Toast("出错啦，请稍后再试");
           } else {
-            tipModule.showToast('出错啦，请稍后再试')
+            if (res.code == 1) {
+              // console.log("success");
+              Toast("注册成功，请登录");
+              // store.commit("registerSuccess", res.user);
+              this.$router.push("/login");
+            } else if (res.code == 0) {
+              // console.log("failed");
+              Toast("用户名已存在");
+            } else {
+              // console.log("error");
+              Toast("出错啦，请稍后再试");
+            }
           }
-        })
-      }
-    },
-    beforeRouteLeave(to, from, next) {
-      if (to.name == 'setting') {
-        this.go_back_home = true
-        this.$router.push({
-          path:'/index'
-        })
-      } else {
-        next()
-      }
-    },
-    activated() {},
-    deactivated() {
-  
+        });
+      }, 1000);
     }
-  }
+  },
+  beforeRouteLeave(to, from, next) {
+    if (to.name == "setting") {
+      this.go_back_home = true;
+      this.$router.push({
+        path: "/index"
+      });
+    } else {
+      next();
+    }
+  },
+  activated() {},
+  deactivated() {}
+};
 </script>
 
-<style  scoped lang="scss">
-  .register-btn {
-    color: black;
-    font-size: .3rem;
-  }
-  
-  .login-page {
-    width: 100vw;
-    height: 100vh;
-    h3 {
-      margin: 0;
-      text-align: center;
-      background: #0e5387;
-      color: #fff;
-      padding: .2rem 0;
-      width: 100vw;
+<style scoped lang="scss">
+.login-btn {
+  color: black;
+  font-size: 0.3rem;
+}
+
+.register-form {
+  margin-top: 1rem;
+
+  p {
+    width: 80%;
+    margin: 0 auto;
+    margin-bottom: 0.2rem;
+    display: flex;
+    line-height: 0.8rem;
+    justify-content: space-between;
+
+    label {
+      width: 1.2rem;
+      font-size: 0.3rem;
     }
-    .login-form {
-      margin-top: 1rem;
-      p {
-        width: 78%;
-        margin: 0 auto;
-        margin-bottom: .2rem;
-        display: flex;
-        line-height: .8rem;
-        justify-content: space-between;
-        label {
-          width: 1.2rem;
-        }
-        input {
-          border: 1px solid #ccc;
-          border-radius: .3rem;
-          width: 60vw;
-          text-indent: 1.5em;
-        }
-      }
-      .submit-btn {
-        width: 85vw;
-        line-height: .35rem;
-        border-radius: .15rem;
-        background: #89ccff;
-        text-align: center;
-        font-weight: bold;
-        color: #fff;
-        margin: 0 auto;
-        line-height: .8rem;
-        margin-top: .8rem;
-      }
-      span.forget-pwd-btn {
-        line-height: .8rem;
-        display: block;
-        width: 100vw;
-        text-align: center;
-        color: #328bcf;
-      }
+
+    input {
+      border: 1px solid #ccc;
+      border-radius: 0.3rem;
+      width: 60vw;
+      text-indent: 1.5em;
     }
   }
+
+  .submit-btn {
+    width: 5rem;
+    height: 0.8rem;
+    border-radius: 0.1rem;
+    margin-top: 0.5rem;
+    font-size: 0.4rem;
+    font-weight: bolder;
+    color: #fff;
+    letter-spacing: 0.2rem;
+    background-color: #18ac18;
+  }
+}
 </style>

@@ -1,135 +1,139 @@
 <template>
   <div class="page">
-    <Header :title="title"></Header>
+    <Header :title="title" :showBack="true">
       <router-link to="/register" class="register-btn">注册</router-link>
-    <div class="login-form">
+    </Header>
+    <!-- 登录表单 -->
+    <div class="login-form" @keyup.enter="login">
       <p>
         <label>用户名</label>
-        <input type="text" v-model="user_name">
+        <input type="text" v-model="login_form.username" placeholder="请输入用户名" maxlength="10"/>
       </p>
       <p>
         <label>密码</label>
-        <input type="password" v-model="password">
+        <input type="password" v-model="login_form.password" placeholder="请输入密码" maxlength="16"/>
       </p>
-      <div class="submit-btn" @click="login">登录</div>
-      <span class="forget-pwd-btn">忘记密码</span>
+      <button class="submit-btn" @click="login">登录</button>
     </div>
   </div>
 </template>
 
 <script>
-  import Header from '_c/Header.vue'
+  import Header from "_c/Header.vue";
   import {
+    Indicator,
     Toast
-  } from 'mint-ui'
+  } from "mint-ui";
+  import Service from "@/service/service.js";
+  import store from "@/store.js";
   export default {
     components: {
       Header
     },
     data() {
       return {
-          title:"登录",
-        user_name: "",
-        password: "",
-        go_back_home: false
-      }
+        title: "登录",
+        login_form: {
+          username: "",
+          password: ""
+        }
+      };
     },
     methods: {
       login() {
-        if (!this.user_name || !this.password) return
-        this.common.showLoading()
-        Service.login({
-          user_name: this.user_name,
-          password: this.password
-        }).then((res) => {
-          this.common.hideLoading()
-          if (res.data.retCode == 0) {
-            store.commit('loginSuccess', res.data.user)
-            //跳转到需要登录前提的目标的页面
-            console.log('跳转到需要登录前提的目标的页面')
-            this.$router.replace({
-              path: this.$route.query.redirect
-            })
-          } else if (res.data.retCode == 40401) {
-            tipModule.showToast('用户名或密码有误')
-          } else {
-            tipModule.showToast('出错啦，请稍后再试')
-          }
-        })
+           // 表单校验
+        if (
+          !this.login_form.username ||
+          !this.login_form.username.trim() ||
+          !this.login_form.password
+        ) {
+          Toast("用户名和密码不能为空");
+          return;
+        }
+        Indicator.open();
+        // 延时1s发送
+        setTimeout(() => {
+          Service.login(this.login_form).then(res => {
+            Indicator.close();
+            if (!res) {
+              // console.log("error");
+              Toast("出错啦，请稍后再试");
+            } else {
+              if (res.code == 1) {
+                // console.log("success");
+                Toast("登录成功");
+                store.commit("loginSuccess", res.user);
+                this.$router.replace({
+                  path: this.$route.query.redirect
+                });
+              } else if (res.code == 0) {
+                // console.log("failed");
+                Toast("用户名或密码有误");
+              } else {
+                // console.log("error");
+                Toast("出错啦，请稍后再试");
+              }
+            }
+          });
+        }, 1000);
       }
     },
     beforeRouteLeave(to, from, next) {
-      if (to.name == 'setting') {
-        this.go_back_home = true
+      if (to.name == "setting") {
+        this.go_back_home = true;
         this.$router.push({
-          path:'/index'
-        })
+          path: "/index"
+        });
       } else {
-        next()
+        next();
       }
     },
     activated() {},
-    deactivated() {
-  
-    }
-  }
+    deactivated() {}
+  };
 </script>
 
-<style  scoped lang="scss">
+<style scoped lang="scss">
   .register-btn {
     color: black;
-    font-size: .3rem;
+    font-size: 0.3rem;
   }
-  
-  .login-page {
-    width: 100vw;
-    height: 100vh;
-    h3 {
-      margin: 0;
-      text-align: center;
-      background: #0e5387;
-      color: #fff;
-      padding: .2rem 0;
-      width: 100vw;
+
+  .login-form {
+    margin-top: 0.8rem;
+
+    p {
+      width: 80%;
+      margin: 0 auto;
+      margin-bottom: 0.2rem;
+      display: flex;
+      line-height: 0.8rem;
+      justify-content: space-between;
+
+      label {
+        width: 1.2rem;
+        font-size: 0.3rem;
+      }
+
+      input {
+        border: 1px solid #ccc;
+        border-radius: 0.3rem;
+        width: 75%;
+        text-indent: 1.5em;
+        letter-spacing: 0.05rem;
+      }
     }
-    .login-form {
-      margin-top: 1rem;
-      p {
-        width: 78%;
-        margin: 0 auto;
-        margin-bottom: .2rem;
-        display: flex;
-        line-height: .8rem;
-        justify-content: space-between;
-        label {
-          width: 1.2rem;
-        }
-        input {
-          border: 1px solid #ccc;
-          border-radius: .3rem;
-          width: 60vw;
-          text-indent: 1.5em;
-        }
-      }
-      .submit-btn {
-        width: 85vw;
-        line-height: .35rem;
-        border-radius: .15rem;
-        background: #89ccff;
-        text-align: center;
-        font-weight: bold;
-        color: #fff;
-        margin: 0 auto;
-        line-height: .8rem;
-        margin-top: .8rem;
-      }
-      span.forget-pwd-btn {
-        line-height: .8rem;
-        display: block;
-        width: 100vw;
-        text-align: center;
-        color: #328bcf;
-      }
+
+    .submit-btn {
+      width: 70%;
+      height: 0.8rem;
+      border-radius: 0.1rem;
+      margin-top: 0.5rem;
+      font-size: 0.35rem;
+      font-weight: bolder;
+      color: #fff;
+      letter-spacing: 0.2rem;
+      background-color: #18ac18;
     }
   }
 </style>

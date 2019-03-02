@@ -40,7 +40,7 @@
     border-top: 1px solid #ccc;
 }
 .save-btn{
-    width: 6rem;
+    width: 80%;
     height: 1rem;
     border-radius: .1rem;
     margin-top: .5rem;
@@ -48,6 +48,6 @@
     font-weight: bolder;
     color: #fff;
     letter-spacing: .2rem;
-    background-color: rgb(24, 172, 24);
+    background-color: #18AC18;
 }
 </style>

@@ -6,6 +6,7 @@ import './registerServiceWorker'
 
 import remConfig from './config/remConfig.js'
 import 'mint-ui/lib/style.css'
+import mock from './mock/index.js'
 
 import '_a/css/reset.css';
 import '_a/css/index.scss';
