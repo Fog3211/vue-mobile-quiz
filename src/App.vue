@@ -1,14 +1,18 @@
 <template>
   <div id="app">
-    <router-view></router-view>
+    <transition :name="transitionName">
+      <keep-alive>
+        <router-view></router-view>
+      </keep-alive>
+    </transition>
   </div>
 </template>
 
 <script>
-
 export default {
   data() {
     return {
+          transitionName:""
     };
   }
 };

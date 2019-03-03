@@ -12,4 +12,5 @@ module.exports = {
       .set('_v', resolve('src/views'))
   },
   productionSourceMap: false,
+  publicPath: process.env.NODE_ENV === 'production' ? './' : './'  
 }

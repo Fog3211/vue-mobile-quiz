@@ -1,14 +1,14 @@
 {
-  "name": "app",
-  "short_name": "app",
+  "name": "vue-mobile-quiz",
+  "short_name": "vue答题",
   "icons": [
     {
-      "src": "./img/icons/android-chrome-192x192.png",
+      "src": "./img/icons/favicon-192x192.png",
       "sizes": "192x192",
       "type": "image/png"
     },
     {
-      "src": "./img/icons/android-chrome-512x512.png",
+      "src": "./img/icons/favicon-512x512.png",
       "sizes": "512x512",
       "type": "image/png"
     }

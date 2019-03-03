@@ -3,19 +3,22 @@ const Random = Mock.Random;
 
 let user_list = [{
     "username": "fog3211",
-    "password": "123456"
+    "password": "123456",
+    "user_theme": ""
 }];
 
-let user_msg = Mock.mock({
-    "msg|1-8": [{
-        "new_msg": true,
-        "id|+1": 0,
-        "date|1": Random.datetime("2019-MM-dd A HH:mm:ss"),
-        "title|+1": "标题" + 0,
-        "content|1": Random.cparagraph(3, 6)
-    }]
-})
+let user_msg = [];
+for (let i = 0; i < Math.random() * 7 + 7; i++) {
+    user_msg.push({
+        id: Random.increment(),
+        msg_date: Random.datetime(),
+        msg_title: Random.ctitle(3, 5),
+        msg_content: Random.cparagraph(3, 6),
+        new_msg: true,
+    });
+}
+
 export {
     user_list,
-    user_msg
+    user_msg,
 }

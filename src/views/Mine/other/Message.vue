@@ -30,6 +30,8 @@
 
 <script>
 import Header from "_c/Header.vue";
+import Service from "@/service/service.js";
+import store from "@/store.js";
 export default {
   components: {
     Header
@@ -39,22 +41,7 @@ export default {
       title: "消息",
       show_msg_detail: false,
       msg_detail: {},
-      msg_list: [
-        {
-          msg_title: "标题一",
-          msg_date: "2018-12-11 22:09",
-          msg_content:
-            "两复音法很种边之型高第位边形住。划从处分等每总还为如收识目。照西度过路调没复法部声阶照速品。区低义者等能于分历多命西太引运",
-          new_msg: true
-        },
-        {
-          msg_title: "标题二",
-          msg_date: "2018-12-11 22:09",
-          msg_content:
-            "两复音法很种边之型高第位边形住。划从处分等每总还为如收识目。照西度过路调没复法部声阶照速品。区低义者等能于分历多命西太引运",
-          new_msg: true
-        }
-      ]
+      msg_list: []
     };
   },
   methods: {
@@ -63,11 +50,26 @@ export default {
       this.msg_detail = item;
       if (this.msg_list[index].new_msg == true) {
         this.msg_list[index].new_msg = false;
+        store.commit("reduceNewMsgCount");
       }
     },
     hiddenMsgDetail() {
       this.show_msg_detail = false;
     }
+  },
+  // 组件激活时调用
+  activated() {
+    // 防止重复mock新消息
+    if (this.msg_list.length != 0) return;
+    Service.getUserMsg().then(res => {
+      if (res.code == 0) {
+        this.msg_list = res.user_msg;
+      }
+    });
+  },
+  // 自动收起详细展示
+  deactivated() {
+    this.show_msg_detail = false;
   }
 };
 </script>

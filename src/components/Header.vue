@@ -1,7 +1,11 @@
 <template>
   <div>
     <div class="header">
-      <i class="iconfont icondajiantou back-btn" @click="back" v-if="showBack"></i>
+      <i
+        class="iconfont icondajiantou back-btn"
+        @click="back"
+        v-if="showBack"
+      ></i>
       <span>{{ title }}</span>
       <div class="right-box">
         <slot></slot>
@@ -12,29 +16,31 @@
 </template>
 
 <script>
-  export default {
-    props: {
-      title: {
-        type: String,
-        default: ""
-      },
-      showBack: {
-        type: Boolean,
-        default: false
-      }
+import store from "@/store.js";
+export default {
+  props: {
+    title: {
+      type: String,
+      default: ""
     },
-    data() {
-      return {};
-    },
-    methods: {
-      back() {
-        this.$router.back(-1);
-      }
+    showBack: {
+      type: Boolean,
+      default: false
     }
-  };
+  },
+  data() {
+    return {};
+  },
+  methods: {
+    back() {
+      this.$router.back(-1);
+    }
+  }
+};
 </script>
 
 <style scoped lang="scss">
+@import "~_a/css/theme.scss";
   .header {
     position: fixed;
     top: 0;
@@ -42,7 +48,8 @@
     z-index: 1000;
     width: 100%;
     height: 0.9rem;
-    background-color: aliceblue;
+    background-color: $red-theme-backgroundColor;
+    color:$red-theme-fontColor;
     text-align: center;
     font-weight: bolder;
     font-size: 0.4rem;
@@ -52,7 +59,6 @@
       position: absolute;
       font-size: 0.6rem;
       left: 0.2rem;
-      color: #8d8c91;
 
       &:active {
         color: #a3a3a3;

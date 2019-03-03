@@ -51,9 +51,9 @@ export default {
     return {
       title: "注册",
       register_form: {
-        username: "",
-        password: "",
-        repassword: ""
+        username: "eee",
+        password: "eeeeee",
+        repassword: "eeeeee"
       }
     };
   },
@@ -88,8 +88,7 @@ export default {
             if (res.code == 1) {
               // console.log("success");
               Toast("注册成功，请登录");
-              // store.commit("registerSuccess", res.user);
-              this.$router.push("/login");
+               this.$router.back(-1);
             } else if (res.code == 0) {
               // console.log("failed");
               Toast("用户名已存在");
@@ -119,7 +118,6 @@ export default {
 
 <style scoped lang="scss">
 .login-btn {
-  color: black;
   font-size: 0.3rem;
 }
 

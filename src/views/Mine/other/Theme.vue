@@ -13,8 +13,9 @@
 
 <script>
 import { Toast } from "mint-ui";
-
+import store from "@/store.js";
 import Header from "_c/Header.vue";
+import {theme_list} from "@/mock/data/data.js";
 export default {
   components: {
     Header
@@ -23,42 +24,12 @@ export default {
     return {
       title: "主题更改",
       changeSucceed: false,
-      theme_list: [
-        {
-          name: "五彩斑斓的黑",
-          bezel_color: "background-color: #080A33",
-          font_color: "color:#fff"
-        },
-        {
-          name: "绿色小清新",
-          bezel_color: "background-color: #BEE6DA",
-          font_color: "color:#ff0"
-        },
-        {
-          name: "伤感忧郁的灰",
-          bezel_color: "background-color: #808080",
-          font_color: "color:#ff0"
-        },
-        {
-          name: "激情四射的红",
-          bezel_color: "background-color: #981534",
-          font_color: "color:#ff0"
-        },
-        {
-          name: "淡然优雅的蓝",
-          bezel_color: "background-color: #88CEF0",
-          font_color: "color:#ff0"
-        },
-        {
-          name: "恢复默认主题",
-          bezel_color: "background-color: aliceblue",
-          font_color: "color:#ff0"
-        }
-      ]
+      theme_list: theme_list
     };
   },
   methods: {
     themeSelect(item) {
+      store.commit("themeSelect",item.meta);
       Toast({
         message: "主题更改成功！",
         position: "bottom"

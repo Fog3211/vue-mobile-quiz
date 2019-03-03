@@ -6,6 +6,9 @@ const Service = {
       },
       register:(params)=>{
           return axios.post('/register',params).then(res => res.data);
+      },
+      getUserMsg(){
+        return axios.get('/user_msg').then(res => res.data);
       }
 }
 export default Service;

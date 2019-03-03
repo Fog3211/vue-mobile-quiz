@@ -34,8 +34,8 @@
       return {
         title: "登录",
         login_form: {
-          username: "",
-          password: ""
+          username: "eee",
+          password: "eeeeee"
         }
       };
     },
@@ -63,13 +63,20 @@
                 // console.log("success");
                 Toast("登录成功");
                 store.commit("loginSuccess", res.user);
+
+                if(!this.$route.query.redirect){
+                  this.$router.push("/home");
+                }
                 this.$router.replace({
                   path: this.$route.query.redirect
                 });
               } else if (res.code == 0) {
                 // console.log("failed");
-                Toast("用户名或密码有误");
-              } else {
+                Toast("密码有误");
+              } else if (res.code == 2) {
+                // console.log("no_user");
+                Toast("用户名不存在");
+              }else {
                 // console.log("error");
                 Toast("出错啦，请稍后再试");
               }
@@ -78,24 +85,11 @@
         }, 1000);
       }
     },
-    beforeRouteLeave(to, from, next) {
-      if (to.name == "setting") {
-        this.go_back_home = true;
-        this.$router.push({
-          path: "/index"
-        });
-      } else {
-        next();
-      }
-    },
-    activated() {},
-    deactivated() {}
   };
 </script>
 
 <style scoped lang="scss">
   .register-btn {
-    color: black;
     font-size: 0.3rem;
   }
 
