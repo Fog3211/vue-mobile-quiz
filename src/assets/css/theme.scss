@@ -21,3 +21,33 @@ $red-theme-fontColor:rgb(228, 243, 164);
 // 蓝色主题
 $blue-theme-backgroundColor:#88CEF0;
 $blue-theme-fontColor:rgb(56, 24, 145);
+
+.default-theme {
+    background-color: $default-theme-backgroundColor !important;
+    color: $default-theme-fontColor !important;
+}
+
+.black-theme {
+    background-color: $black-theme-backgroundColor !important;
+    color: $black-theme-fontColor !important;
+}
+
+.green-theme {
+    background-color: $green-theme-backgroundColor !important;
+    color: $green-theme-fontColor !important;
+}
+
+.gray-theme {
+    background-color: $gray-theme-backgroundColor !important;
+    color: $gray-theme-fontColor !important;
+}
+
+.red-theme {
+    background-color: $red-theme-backgroundColor !important;
+    color: $red-theme-fontColor !important;
+}
+
+.blue-theme {
+    background-color: $blue-theme-backgroundColor !important;
+    color: $blue-theme-fontColor !important;
+}

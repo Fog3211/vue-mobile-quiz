@@ -16,16 +16,22 @@ const router = new Router({
     }, {
       path: '/404',
       name: '404',
-      component: () => import('_v/Home/404.vue')
+      component: () => import('_v/home/404.vue')
+    }, {
+      path: '/',
+      redirect: '/home'
+    }, {
+      path: '/index',
+      redirect: '/home'
     }, {
       path: '/home',
       name: 'home',
-      component: () => import('_v/Home/Home.vue')
+      component: () => import('_v/home/Home.vue')
     },
     {
       path: '/search',
       name: 'search',
-      component: () => import('_v/Home/Search.vue')
+      component: () => import('_v/home/Search.vue')
     },
     {
       path: '/collection',
@@ -33,15 +39,23 @@ const router = new Router({
       meta: {
         requiresAuth: true
       },
-      component: () => import('_v/Collection/Collection.vue')
+      component: () => import('_v/collection/Collection.vue')
     },
     {
       path: '/mine',
       name: 'mine',
       meta: {
-        requiresAuth: true
+        // requiresAuth: true
       },
-      component: () => import('_v/Mine/Mine.vue'),
+      component: () => import('_v/mine/Mine.vue'),
+    },
+    {
+      path: '/mine/avatar',
+      name: 'avatar',
+      meta: {
+        // requiresAuth: true
+      },
+      component: () => import('_v/mine/Avatar.vue'),
     },
     {
       path: '/mine/theme',
@@ -49,15 +63,15 @@ const router = new Router({
       meta: {
         requiresAuth: true
       },
-      component: () => import('_v/Mine/other/Theme.vue')
+      component: () => import('_v/mine/other/Theme.vue')
     },
     {
-      path: '/mine/detail',
-      name: "detail",
+      path: '/mine/profile',
+      name: "profile",
       meta: {
         requiresAuth: true
       },
-      component: () => import('_v/Mine/other/Detail.vue')
+      component: () => import('_v/mine/other/Profile.vue')
     },
     {
       path: '/mine/message',
@@ -65,7 +79,7 @@ const router = new Router({
       meta: {
         requiresAuth: true
       },
-      component: () => import('_v/Mine/other/Message.vue')
+      component: () => import('_v/mine/other/Message.vue')
     },
     {
       path: '/mine/about',
@@ -73,17 +87,17 @@ const router = new Router({
       meta: {
         requiresAuth: true
       },
-      component: () => import('_v/Mine/other/About.vue')
+      component: () => import('_v/mine/other/About.vue')
     },
     {
       path: '/login',
       name: "login",
-      component: () => import('_v/Mine/login/Login.vue')
+      component: () => import('_v/login/Login.vue')
     },
     {
       path: '/register',
       name: "register",
-      component: () => import('_v/Mine/login/Register.vue')
+      component: () => import('_v/login/Register.vue')
     }
   ]
 })

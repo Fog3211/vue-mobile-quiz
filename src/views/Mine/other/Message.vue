@@ -62,7 +62,8 @@ export default {
     // 防止重复mock新消息
     if (this.msg_list.length != 0) return;
     Service.getUserMsg().then(res => {
-      if (res.code == 0) {
+      // console.log(res);
+      if (res.code == 1) {
         this.msg_list = res.user_msg;
       }
     });

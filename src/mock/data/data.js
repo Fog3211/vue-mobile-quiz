@@ -30,6 +30,21 @@ let theme_list = [{
     }
 ];
 
+let avatar_list=[
+    require("_a/img/avatar/avatar01.jpg"),
+    require("_a/img/avatar/avatar02.jpg"),
+    require("_a/img/avatar/avatar03.jpg"),
+    require("_a/img/avatar/avatar04.jpg"),
+    require("_a/img/avatar/avatar05.jpg"),
+    require("_a/img/avatar/avatar06.jpg"),
+    require("_a/img/avatar/avatar07.jpg"),
+    require("_a/img/avatar/avatar08.jpg"),
+    require("_a/img/avatar/avatar09.jpg"),
+    require("_a/img/avatar/avatar10.jpg"),
+    require("_a/img/avatar/avatar11.jpg"),
+    require("_a/img/avatar/avatar12.jpg")
+  ];
 export {
     theme_list,
+    avatar_list
 }

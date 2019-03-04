@@ -25,7 +25,7 @@ Mock.mock('/login', 'post', (params) => {
     if (can_login) {
         return {
             code: 1,
-            user: user.username
+            username: user.username
         }
     } else {
         return {
@@ -64,8 +64,102 @@ Mock.mock('/user_msg', 'get', () => {
         return item.new_msg == true;
     })
     return {
-        code: 0,
+        code: 1,
         new_msg_count: new_msg.length,
         user_msg: user_msg
+    }
+})
+
+// 获取主题信息
+Mock.mock('/user_theme', 'post', (params) => {
+    let user = JSON.parse(params.body);
+    let theme = 'default-theme';
+    user_list.some((item) => {
+        if (item.username == user.username) {
+            if (item.user_theme) {
+                item.user_theme = user.user_theme ? user.user_theme : item.user_theme;
+                theme = item.user_theme;
+                return true;
+            } else {
+                item.user_theme = user.user_theme ? user.user_theme : "default-theme";
+                theme = item.user_theme;
+                return false;
+            }
+        }
+    })
+    return {
+        code: 1,
+        user_theme: theme
+    }
+})
+
+// 用户账户信息
+Mock.mock('/user_profile', 'post', (params) => {
+    let profile = JSON.parse(params.body);
+    let profile_data = {};
+    // 获取账户信息
+    if (profile.type == "get") {
+        user_list.some(item => {
+            if (item.username == profile.username) {
+                profile_data={
+                    username:item.username,
+                    nickname:item.nickname,
+                    phone:item.phone,
+                    email:item.email,
+                    birthday:item.birthday,
+                    introduction:item.introduction
+                }
+            }
+        })
+        return {
+            code:1,
+            data:profile_data
+        }
+    }
+    // 设置账户信息
+    let success = user_list.some(item => {
+        if (item.username == profile.username) {
+            item.nickname = profile.nickname;
+            item.phone = profile.phone;
+            item.email = profile.email;
+            item.birthday = profile.birthday;
+            item.introduction = profile.introduction;
+            return true;
+        } else {
+            return false;
+        }
+    })
+
+    if (success) {
+        return {
+            code: 1,
+        }
+    } else {
+        return {
+            code: 0,
+        }
+    }
+})
+
+// 获取头像信息
+Mock.mock('/user_avatar', 'post', (params) => {
+    let user = JSON.parse(params.body);
+    let avatar = require("_a/img/avatar/user.jpg");
+    user_list.some((item) => {
+        if (item.username == user.username) {
+            if (item.user_avatar) {
+                item.user_avatar = user.user_avatar ? user.user_avatar : item.user_avatar;
+                avatar = item.user_avatar;
+                return true;
+            } else {
+                item.user_avatar = user.user_avatar ? user.user_avatar : require("_a/img/avatar/user.jpg");
+                avatar = item.user_avatar;
+                return false;
+            }
+        }
+    })
+    return {
+        code: 1,
+        user_avatar: avatar
     }
 })

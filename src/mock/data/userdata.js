@@ -4,7 +4,6 @@ const Random = Mock.Random;
 let user_list = [{
     "username": "fog3211",
     "password": "123456",
-    "user_theme": ""
 }];
 
 let user_msg = [];
