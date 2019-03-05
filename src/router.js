@@ -19,19 +19,39 @@ const router = new Router({
       component: () => import('_v/home/404.vue')
     }, {
       path: '/',
-      redirect: '/home'
+      redirect: '/home/recommend'
     }, {
       path: '/index',
-      redirect: '/home'
+      redirect: '/home/recommend'
     }, {
       path: '/home',
       name: 'home',
-      component: () => import('_v/home/Home.vue')
+      component: () => import('_v/home/Home.vue'),
+      redirect:'/home/recommend',
+      children: [{
+          path: "recommend",
+          name:"recommend",
+          component: () => import('_v/home/recommend/Recommend.vue'),
+        },
+        {
+          path: "hottest",
+          name:"hottest",
+          component: () => import('_v/home/recommend/Hottest.vue'),
+        },{
+          path: "latest",
+          name:"latest",
+          component: () => import('_v/home/recommend/Latest.vue'),
+        }
+      ]
     },
     {
       path: '/search',
       name: 'search',
       component: () => import('_v/home/Search.vue')
+    },{
+      path:'/quiz',
+      name:'quiz',
+      component:()=>import('_v/quiz/Quiz.vue')
     },
     {
       path: '/collection',
@@ -39,13 +59,13 @@ const router = new Router({
       meta: {
         requiresAuth: true
       },
-      component: () => import('_v/collection/Collection.vue')
+      component: () => import('_v/quiz/Collection.vue')
     },
     {
       path: '/mine',
       name: 'mine',
       meta: {
-        // requiresAuth: true
+        requiresAuth: true
       },
       component: () => import('_v/mine/Mine.vue'),
     },
@@ -53,7 +73,7 @@ const router = new Router({
       path: '/mine/avatar',
       name: 'avatar',
       meta: {
-        // requiresAuth: true
+        requiresAuth: true
       },
       component: () => import('_v/mine/Avatar.vue'),
     },

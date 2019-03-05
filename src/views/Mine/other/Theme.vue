@@ -16,8 +16,9 @@
     Indicator,
     Toast
   } from "mint-ui";
-  import store from "@/store.js";
+ 
   import Header from "_c/Header.vue";
+   import store from "@/store.js";
   import {
     theme_list
   } from "@/mock/data/data.js";

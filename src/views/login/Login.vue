@@ -42,7 +42,6 @@
     methods: {
       login() {
         // 表单校验
-
         if (this.form_state.username == "warning") {
           Toast({
             message: "用户名不能为空",
@@ -69,7 +68,9 @@
               });
             } else {
               if (res.code == 1) {
-                Toast("登录成功");
+                Toast({message:"登录成功",
+                 position: "bottom"
+                });
                 store.commit("loginSuccess", res);
 
                 if (!this.$route.query.redirect) {

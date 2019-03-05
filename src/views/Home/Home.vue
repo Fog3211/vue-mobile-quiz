@@ -1,95 +1,147 @@
 <template>
   <div class="home page">
     <Header :title="title"></Header>
+    <!-- 搜索部分 -->
     <router-link to="/search" class="search">
       <div class="search-input">
         <i class="iconfont iconsousuo search-icon"></i>
         <span class="search-text">请输入关键词进行搜索</span>
       </div>
     </router-link>
+    <!-- 轮播图 -->
     <mt-swipe :auto="3000" class="swiper">
-      <mt-swipe-item v-for="(item, index) in swipeList" :key="index" class="swiper-item">
+      <mt-swipe-item
+        v-for="(item, index) in swipe_list"
+        :key="index"
+        class="swiper-item"
+      >
         <img :src="item.url" />
       </mt-swipe-item>
     </mt-swipe>
+    <!-- 试题推荐 -->
+    <div class="recommend-box">
+      <div class="recommend-nav">
+        <router-link to="/home/recommend" active-class="active" class="link-btn"
+          ><i class="iconfont icontuijian1"></i>推荐试题</router-link
+        >
+        <router-link to="/home/hottest" active-class="active" class="link-btn"
+          ><i class="iconfont iconhuo"></i>热门试题</router-link
+        >
+        <router-link to="/home/latest" active-class="active" class="link-btn"
+          ><i class="iconfont iconxin1"></i>最新试题</router-link
+        >
+      </div>
+      <div class="recommend-content">
+        <keep-alive>
+          <router-view></router-view>
+        </keep-alive>
+      </div>
+    </div>
     <Footer></Footer>
   </div>
 </template>
 
 <script>
-  import Header from "_c/Header.vue";
-  import Footer from "_c/Footer.vue";
-
-  export default {
-    components: {
-      Header,
-      Footer
-    },
-    name: "home",
-    data() {
-      return {
-        title: "首页",
-        swipeList: [{
-            url: require("_a/img/swipe/1.png")
-          },
-          {
-            url: require("_a/img/swipe/2.png")
-          },
-          {
-            url: require("_a/img/swipe/3.png")
-          }
-        ]
-      };
-    }
-  };
+import Header from "_c/Header.vue";
+import Footer from "_c/Footer.vue";
+import { swipe_list } from "@/mock/data/data.js";
+export default {
+  components: {
+    Header,
+    Footer
+  },
+  name: "home",
+  data() {
+    return {
+      title: "首页",
+      swipe_list: []
+    };
+  },
+  mounted() {
+    this.$nextTick(() => {
+      this.swipe_list = swipe_list;
+    });
+  }
+};
 </script>
 <style scoped lang="scss">
-  .search {
-    position: relative;
-    width: 100%;
-    height: 1.1rem;
+.search {
+  position: relative;
+  width: 100%;
+  height: 1.1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &-input {
     display: flex;
     justify-content: center;
     align-items: center;
-
-    &-input {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      color: #b7b7b7;
-      width: 95vw;
-      height: 0.75rem;
-     background-color: aliceblue;
-      border-radius: 0.3rem;
-    }
-
-    &-icon {
-      position: absolute;
-      left: 0.6rem;
-      font-size: 0.38rem;
-      line-height: 0.75rem;
-      color: #969696;
-    }
-
-    &-text {
-      font-size: 0.35rem;
-      line-height: 0.35rem;
-      letter-spacing: 0.05rem;
-    }
+    color: #b7b7b7;
+    width: 95vw;
+    height: 0.75rem;
+    background-color: aliceblue;
+    border-radius: 0.3rem;
   }
 
-  .swiper {
+  &-icon {
+    position: absolute;
+    left: 0.6rem;
+    font-size: 0.38rem;
+    line-height: 0.75rem;
+    color: #969696;
+  }
+
+  &-text {
+    font-size: 0.35rem;
+    line-height: 0.35rem;
+    letter-spacing: 0.05rem;
+  }
+}
+
+.swiper {
+  width: 100vw;
+  height: 50vw;
+
+  .swiper-item {
     width: 100vw;
     height: 50vw;
 
-    .swiper-item {
-      width: 100vw;
-      height: 50vw;
+    img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+}
 
-      img {
-        width: 100%;
-        height: 100%;
+.recommend-box {
+  margin-top: .3rem;
+  .recommend-content {
+    min-height: 5rem;
+  }
+  .recommend-nav {
+    width: 90vw;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    .link-btn {
+      line-height: 1.3rem;
+      font-size: 0.34rem;
+      color: #000;
+      font-weight: bolder;
+      .iconfont {
+        font-size: 0.38rem;
+        margin-right: 0.1rem;
+        display: none;
+      }
+      &.active {
+        font-size: 0.38rem;
+        color: #3a5bb4;
+        .iconfont {
+          display: inline-block;
+        }
       }
     }
   }
+}
 </style>

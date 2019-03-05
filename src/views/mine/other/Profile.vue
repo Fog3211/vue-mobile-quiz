@@ -64,6 +64,7 @@
                         Service.saveProfile(this.profile_form).then(res => {
                             Indicator.close();
                             if (res.code == 1) {
+                                this.$router.back(-1);
                                 Toast({message:"保存成功",position: "bottom"});
                             } else {
                                 Toast({message:"保存失败",position: "bottom"});

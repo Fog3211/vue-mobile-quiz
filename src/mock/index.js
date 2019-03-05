@@ -5,6 +5,13 @@ import {
     user_msg
 } from "./data/userData.js"
 
+// 正则取get参数
+function getQueryByName(url,name){
+    var reg=new RegExp('[?&]'+name+'=([^&#]+)');
+    var query=url.match(reg);
+    return query?query[1]:null;
+}
+
 //登录
 Mock.mock('/login', 'post', (params) => {
     let user = JSON.parse(params.body);
@@ -71,8 +78,11 @@ Mock.mock('/user_msg', 'get', () => {
 })
 
 // 获取主题信息
-Mock.mock('/user_theme', 'post', (params) => {
-    let user = JSON.parse(params.body);
+Mock.mock(/^\/user_theme/, 'get', (params) => {
+    let user = {
+        username: getQueryByName(params.url,'username'),
+        user_theme:getQueryByName(params.url,'user_theme')
+    };
     let theme = 'default-theme';
     user_list.some((item) => {
         if (item.username == user.username) {
@@ -101,19 +111,19 @@ Mock.mock('/user_profile', 'post', (params) => {
     if (profile.type == "get") {
         user_list.some(item => {
             if (item.username == profile.username) {
-                profile_data={
-                    username:item.username,
-                    nickname:item.nickname,
-                    phone:item.phone,
-                    email:item.email,
-                    birthday:item.birthday,
-                    introduction:item.introduction
+                profile_data = {
+                    username: item.username,
+                    nickname: item.nickname,
+                    phone: item.phone,
+                    email: item.email,
+                    birthday: item.birthday,
+                    introduction: item.introduction
                 }
             }
         })
         return {
-            code:1,
-            data:profile_data
+            code: 1,
+            data: profile_data
         }
     }
     // 设置账户信息
@@ -142,8 +152,11 @@ Mock.mock('/user_profile', 'post', (params) => {
 })
 
 // 获取头像信息
-Mock.mock('/user_avatar', 'post', (params) => {
-    let user = JSON.parse(params.body);
+Mock.mock(/^\/user_avatar/, 'get', (params) => {
+    let user = {
+        username: getQueryByName(params.url,'username'),
+        user_avatar:getQueryByName(params.url,'user_avatar')
+    };
     let avatar = require("_a/img/avatar/user.jpg");
     user_list.some((item) => {
         if (item.username == user.username) {

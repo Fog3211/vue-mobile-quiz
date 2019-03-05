@@ -1,3 +1,4 @@
+// 主题存储
 let theme_list = [{
         name: "五彩斑斓的黑",
         meta: "black",
@@ -29,8 +30,8 @@ let theme_list = [{
         bezel_color: "background-color: aliceblue",
     }
 ];
-
-let avatar_list=[
+// 头像存储
+let avatar_list = [
     require("_a/img/avatar/avatar01.jpg"),
     require("_a/img/avatar/avatar02.jpg"),
     require("_a/img/avatar/avatar03.jpg"),
@@ -43,8 +44,56 @@ let avatar_list=[
     require("_a/img/avatar/avatar10.jpg"),
     require("_a/img/avatar/avatar11.jpg"),
     require("_a/img/avatar/avatar12.jpg")
-  ];
+];
+// 轮播图存储
+let swipe_list = [{
+        url: require("_a/img/swipe/1.png")
+    },
+    {
+        url: require("_a/img/swipe/2.png")
+    },
+    {
+        url: require("_a/img/swipe/3.png")
+    }
+];
+// mine页面功能存储
+let info_list = [{
+        name: "主题设置",
+        path: "/mine/theme",
+        icon: "iconzhuti",
+        icon_color: {
+            color: "#A87643"
+        }
+    },
+    {
+        name: "个人信息",
+        path: "/mine/profile",
+        icon: "iconcredentials_icon",
+        icon_color: {
+            color: "#150037"
+        }
+    },
+    {
+        name: "消息",
+        path: "/mine/message",
+        icon: "icontongzhi",
+        icon_color: {
+            color: "#348C71"
+        }
+    },
+    {
+        name: "关于",
+        path: "/mine/about",
+        icon: "iconiconset0103",
+        icon_color: {
+            color: "#724EEC"
+        }
+    }
+];
+
 export {
     theme_list,
-    avatar_list
+    avatar_list,
+    swipe_list,
+    info_list
 }

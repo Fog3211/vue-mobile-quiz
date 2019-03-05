@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "precache-manifest.28b5128a658f3e6ce4c67f45481b7eac.js"
+  "precache-manifest.e4b2246cdc5e19f5726e83527ed5a161.js"
 );
 
 workbox.core.setCacheNameDetails({prefix: "vue-mobile-quiz"});

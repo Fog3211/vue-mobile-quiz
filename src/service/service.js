@@ -11,22 +11,22 @@ const Service = {
         return axios.get('/user_msg').then(res => res.data);
     },
     setUserTheme: (params) => {
-        return axios.post('/user_theme', params).then(res => res.data);
+        return axios.get(`/user_theme?username=${params.username}&user_theme=${params.user_theme}`).then(res => res.data);
     },
     getUserTheme: (params) => {
-        return axios.post('/user_theme', params).then(res => res.data);
+        return axios.get(`/user_theme?username=${params.username}&user_theme=${params.user_theme}`).then(res => res.data);
     },
     saveProfile: (params) => {
-        return axios.post('/user_profile',params).then(res => res.data);
+        return axios.post('/user_profile', params).then(res => res.data);
     },
     getProfile: (params) => {
-        return axios.post('/user_profile',params).then(res => res.data);
+        return axios.post('/user_profile', params).then(res => res.data);
     },
-    selectAvatar:(params)=>{
-        return axios.post('/user_avatar',params).then(res => res.data);
+    selectAvatar: (params) => {
+        return axios.get(`/user_avatar?username=${params.username}&user_avatar=${params.user_avatar}`).then(res => res.data);
     },
-    getAvatar:(params)=>{
-        return axios.post('/user_avatar',params).then(res => res.data);
+    getAvatar: (params) => {
+        return axios.get(`/user_avatar?username=${params.username}&user_avatar=${params.user_avatar}`).then(res => res.data);
     }
 }
 export default Service;

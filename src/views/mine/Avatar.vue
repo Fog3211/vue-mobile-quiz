@@ -14,11 +14,12 @@
 </template>
 
 <script>
+import { Toast } from "mint-ui";
 import Header from "_c/Header.vue";
 import { avatar_list } from "@/mock/data/data.js";
 import Service from "@/service/service.js";
 import store from "@/store.js";
-import { Toast } from "mint-ui";
+
 export default {
   components: {
     Header
@@ -40,6 +41,7 @@ export default {
             message: "头像更改成功！",
             position: "bottom"
           });
+          this.$router.back(-1);
         } else {
           Toast({
             message: "头像更改失败！",
@@ -50,7 +52,7 @@ export default {
     }
   },
   mounted() {
-    this.$nextTick(function() {
+    this.$nextTick(()=> {
       this.avatar_list = avatar_list;
     });
   }

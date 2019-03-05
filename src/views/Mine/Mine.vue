@@ -41,6 +41,7 @@
   import Footer from "_c/Footer.vue";
   import store from "@/store.js";
     import Service from "@/service/service.js";
+      import {info_list} from "@/mock/data/data.js";
   export default {
     components: {
       Header,
@@ -55,39 +56,7 @@
         avatar: {
           url: null
         },
-        info_list: [{
-            name: "主题设置",
-            path: "/mine/theme",
-            icon: "iconzhuti",
-            icon_color: {
-              color: "#A87643"
-            }
-          },
-          {
-            name: "个人信息",
-            path: "/mine/profile",
-            icon: "iconcredentials_icon",
-            icon_color: {
-              color: "#150037"
-            }
-          },
-          {
-            name: "消息",
-            path: "/mine/message",
-            icon: "icontongzhi",
-            icon_color: {
-              color: "#348C71"
-            }
-          },
-          {
-            name: "关于",
-            path: "/mine/about",
-            icon: "iconiconset0103",
-            icon_color: {
-              color: "#724EEC"
-            }
-          }
-        ]
+        info_list: []
       };
     },
     methods: {
@@ -111,6 +80,11 @@
         return store.state.new_msg_count;
       }
     },
+    mounted(){
+      this.$nextTick(()=>{
+        this.info_list=info_list;
+      });
+    },
     activated() {
             Service.getProfile({
                 username: store.state.username,
@@ -125,8 +99,8 @@
                 username: store.state.username,
                 user_avatar: ''
             }).then(res => {
-                if (res.code == 1) {
-                   this.avatar.url=res.data.user_avatar;
+                if (res.code == 1) {                 
+                   this.avatar.url=res.user_avatar;
                 }
             });
         }
