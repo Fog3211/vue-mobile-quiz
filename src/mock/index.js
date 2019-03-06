@@ -5,11 +5,14 @@ import {
     user_msg
 } from "./data/userData.js"
 
+import {
+    all_quiz_list
+} from "./data/quizData.js"
 // 正则取get参数
-function getQueryByName(url,name){
-    var reg=new RegExp('[?&]'+name+'=([^&#]+)');
-    var query=url.match(reg);
-    return query?query[1]:null;
+function getQueryByName(url, name) {
+    var reg = new RegExp('[?&]' + name + '=([^&#]+)');
+    var query = url.match(reg);
+    return query ? query[1] : null;
 }
 
 //登录
@@ -80,8 +83,8 @@ Mock.mock('/user_msg', 'get', () => {
 // 获取主题信息
 Mock.mock(/^\/user_theme/, 'get', (params) => {
     let user = {
-        username: getQueryByName(params.url,'username'),
-        user_theme:getQueryByName(params.url,'user_theme')
+        username: getQueryByName(params.url, 'username'),
+        user_theme: getQueryByName(params.url, 'user_theme')
     };
     let theme = 'default-theme';
     user_list.some((item) => {
@@ -154,8 +157,8 @@ Mock.mock('/user_profile', 'post', (params) => {
 // 获取头像信息
 Mock.mock(/^\/user_avatar/, 'get', (params) => {
     let user = {
-        username: getQueryByName(params.url,'username'),
-        user_avatar:getQueryByName(params.url,'user_avatar')
+        username: getQueryByName(params.url, 'username'),
+        user_avatar: getQueryByName(params.url, 'user_avatar')
     };
     let avatar = require("_a/img/avatar/user.jpg");
     user_list.some((item) => {
@@ -176,3 +179,25 @@ Mock.mock(/^\/user_avatar/, 'get', (params) => {
         user_avatar: avatar
     }
 })
+
+// 根据id获取试题
+Mock.mock(/\/quiz\//, 'get', (params) => {
+    let quiz_list_id = params.url.match(/\/quiz\/(\w+)/)[1];
+    let quiz_list = {};
+    let success = all_quiz_list.some(item => {
+        if (item.quiz_list_id == quiz_list_id) {
+            quiz_list = item.quiz_list;
+            return true;
+        }
+        return false;
+    })
+    if (success) {
+        return {
+            code: 1,
+            quiz_list: quiz_list
+        }
+    }
+    return {
+        code:0
+    }
+});

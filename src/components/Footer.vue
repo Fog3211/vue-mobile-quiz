@@ -76,7 +76,6 @@ export default {
     }
     &.active {
       font-size: 0.4rem;
-    //   color: #0080f6;
     }
 
     .badge {

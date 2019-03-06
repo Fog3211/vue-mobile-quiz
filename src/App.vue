@@ -12,14 +12,14 @@
 export default {
   data() {
     return {
-      transitionName: ""
+      transitionName: "",
     };
   },
   watch: {
     $route(to, from) {
       let no_transition = [
         "register",
-        "login"
+        "login",
       ];
       if (
         no_transition.includes(to.name) &&
@@ -37,7 +37,7 @@ export default {
           toDepth < fromDepth ? "slide-right" : "slide-left";
       }
     }
-  }
+  },
 };
 </script>
 <style lang="scss">

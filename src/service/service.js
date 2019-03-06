@@ -27,6 +27,9 @@ const Service = {
     },
     getAvatar: (params) => {
         return axios.get(`/user_avatar?username=${params.username}&user_avatar=${params.user_avatar}`).then(res => res.data);
+    },
+    getQuizById: (quiz_list_id) => {
+        return axios.get(`/quiz/${quiz_list_id}`).then(res => res.data);
     }
 }
 export default Service;
