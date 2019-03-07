@@ -1,0 +1,27 @@
+{
+  "name": "vue-mobile-quiz",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build"
+  },
+  "dependencies": {
+    "axios": "^0.18.0",
+    "mint-ui": "^2.2.13",
+    "mockjs": "^1.0.1-beta3",
+    "register-service-worker": "^1.5.2",
+    "vue": "^2.6.6",
+    "vue-router": "^3.0.1",
+    "vuex": "^3.0.1"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "^3.2.0",
+    "@vue/cli-plugin-pwa": "^3.2.0",
+    "@vue/cli-service": "^3.2.0",
+    "babel-plugin-component": "^1.1.1",
+    "node-sass": "^4.9.0",
+    "sass-loader": "^7.1.0",
+    "vue-template-compiler": "^2.5.21"
+  }
+}

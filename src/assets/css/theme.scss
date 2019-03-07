@@ -1,0 +1,53 @@
+// 默认
+$default-theme-backgroundColor:aliceblue;
+$default-theme-fontColor:#000;
+
+// 黑色主题
+$black-theme-backgroundColor:#080A33;
+$black-theme-fontColor:rgb(224, 216, 216);
+
+// 绿色主题
+$green-theme-backgroundColor:#BEE6DA;
+$green-theme-fontColor:rgb(199, 151, 48);
+
+// 灰色主题
+$gray-theme-backgroundColor:#808080;
+$gray-theme-fontColor:rgb(114, 37, 138);
+
+// 红色主题
+$red-theme-backgroundColor:#981534;
+$red-theme-fontColor:rgb(228, 243, 164);
+
+// 蓝色主题
+$blue-theme-backgroundColor:#88CEF0;
+$blue-theme-fontColor:rgb(56, 24, 145);
+
+.default-theme {
+    background-color: $default-theme-backgroundColor !important;
+    color: $default-theme-fontColor !important;
+}
+
+.black-theme {
+    background-color: $black-theme-backgroundColor !important;
+    color: $black-theme-fontColor !important;
+}
+
+.green-theme {
+    background-color: $green-theme-backgroundColor !important;
+    color: $green-theme-fontColor !important;
+}
+
+.gray-theme {
+    background-color: $gray-theme-backgroundColor !important;
+    color: $gray-theme-fontColor !important;
+}
+
+.red-theme {
+    background-color: $red-theme-backgroundColor !important;
+    color: $red-theme-fontColor !important;
+}
+
+.blue-theme {
+    background-color: $blue-theme-backgroundColor !important;
+    color: $blue-theme-fontColor !important;
+}
