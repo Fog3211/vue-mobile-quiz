@@ -12,82 +12,85 @@
 </template>
 
 <script>
-  import {
-    Indicator,
-    Toast
-  } from "mint-ui";
- 
-  import Header from "_c/Header.vue";
-   import store from "@/store.js";
-  import {
-    theme_list
-  } from "@/mock/data/data.js";
-  import Service from "@/service/service.js";
-  export default {
-    components: {
-      Header
-    },
-    data() {
-      return {
-        title: "主题更改",
-        theme_list: theme_list
-      };
-    },
-    methods: {
-      themeSelect(item) {
-        store.commit("themeSelect", item);
-        Indicator.open();
-        setTimeout(() => {
-          Indicator.close();
-          Service.setUserTheme({
-            username: store.state.username,
-            user_theme: item.meta + "-theme"
-          }).then(res => {
-            if (res.code == 1) {
-              Toast({
-                message: "主题更改成功！",
-                position: "bottom"
-              });
-            } else {
-              Toast({
-                message: "主题更改失败！",
-                position: "bottom"
-              });
-            }
-          });
-        }, 500);
-      }
+import { Indicator, Toast } from "mint-ui";
+
+import Header from "_c/Header.vue";
+import store from "@/store.js";
+import Service from "@/service/service.js";
+export default {
+  components: {
+    Header
+  },
+  data() {
+    return {
+      title: "主题更改",
+      theme_list: []
+    };
+  },
+  methods: {
+    themeSelect(item) {
+      store.commit("themeSelect", item);
+      Indicator.open();
+      setTimeout(() => {
+        Indicator.close();
+        Service.setUserTheme({
+          username: store.state.username,
+          user_theme: item.meta + "-theme"
+        }).then(res => {
+          if (res.code == 1) {
+            Toast({
+              message: "主题更改成功！",
+              position: "bottom"
+            });
+          } else {
+            Toast({
+              message: "主题更改失败！",
+              position: "bottom"
+            });
+          }
+        });
+      }, 500);
     }
-  };
+  },
+  created() {
+    this.$nextTick(() => {
+      Service.getThemeList().then(res => {
+        if (res.code == 1) {
+          this.theme_list = res.data;
+        }
+      });
+    });
+  }
+};
 </script>
 
 <style scoped lang="scss">
-  .theme {
-    &-select {
-      background-color: #fff;
-      width: 100%;
-      height: 1rem;
-      margin: 0.4rem 0;
-      font-size: 0.5rem;
-      line-height: 1rem;
-      border-radius: 0.2rem;
-      display: flex;
-      justify-content: space-around;
+.theme {
+  &-select {
+    background-color: #fff;
+    width: 100%;
+    height: 1rem;
+    margin: 0.4rem 0;
+    font-size: 0.5rem;
+    line-height: 1rem;
+    border-radius: 0.2rem;
+    display: flex;
+    justify-content: space-around;
 
-      &:active {
-        background-color: aliceblue;
-      }
-    }
-
-    &-name {
-      width: 3.6rem;
-    }
-
-    &-show {
-      display: inline-block;
-      width: 0.8rem;
-      height: 0.8rem;
-      margin-top: 0.1rem;
+    &:active {
+      background-color: aliceblue;
     }
   }
+
+  &-name {
+    width: 3.6rem;
+  }
+
+  &-show {
+    display: inline-block;
+    width: 0.8rem;
+    height: 0.8rem;
+    margin-top: 0.1rem;
+  }
+}
 </style>

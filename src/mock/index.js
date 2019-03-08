@@ -3,11 +3,20 @@ import Mock from "mockjs"
 import {
     user_list,
     user_msg
-} from "./data/userData.js"
+} from "./data/userData.js";
+import {
+    all_quiz_list,
+    latest_list,
+    hottest_list,
+    recommend_list,
+    subject_list
+} from "./data/quizData.js";
 
 import {
-    all_quiz_list
-} from "./data/quizData.js"
+    swipe_img_list,
+    theme_list,
+    avatar_list,
+} from "@/mock/data/data.js";
 // 正则取get参数
 function getQueryByName(url, name) {
     var reg = new RegExp('[?&]' + name + '=([^&#]+)');
@@ -198,6 +207,56 @@ Mock.mock(/\/quiz\//, 'get', (params) => {
         }
     }
     return {
-        code:0
+        code: 0
     }
 });
+
+// 获取最新试题列表
+Mock.mock('/latest_list', 'get', () => {
+    return {
+        code: 1,
+        data: latest_list
+    }
+})
+//   获取最热试题列表
+Mock.mock('/hottest_list', 'get', () => {
+    return {
+        code: 1,
+        data: hottest_list
+    }
+})
+//   获取推荐试题列表
+Mock.mock('/recommend_list', 'get', () => {
+    return {
+        code: 1,
+        data: recommend_list
+    }
+})
+//   获取科目试题列表
+Mock.mock('/subject_list', 'get', () => {
+    return {
+        code: 1,
+        data: subject_list
+    }
+})
+//   获取轮播图片列表
+Mock.mock('/swipe_img_list', 'get', () => {
+    return {
+        code: 1,
+        data: swipe_img_list
+    }
+})
+//   获取轮播图片列表
+Mock.mock('/avatar_list', 'get', () => {
+    return {
+        code: 1,
+        data: avatar_list
+    }
+})
+//   获取轮播图片列表
+Mock.mock('/theme_list', 'get', () => {
+    return {
+        code: 1,
+        data: theme_list
+    }
+})

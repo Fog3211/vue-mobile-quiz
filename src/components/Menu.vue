@@ -11,7 +11,12 @@
 <script>
 export default {
   name: "Menu",
-  props: ["isHeadShow"],
+  props: {
+    isHeadShow: {
+      type: Boolean,
+      default: false
+    }
+  },
   data() {
     return {
       isModelShow: false

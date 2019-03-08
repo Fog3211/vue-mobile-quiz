@@ -47,8 +47,7 @@
 import Header from "_c/Header.vue";
 import Footer from "_c/Footer.vue";
 import Swipe from "_c/Swipe.vue";
-import { swipe_img_list } from "@/mock/data/data.js";
-import { subject_list } from "@/mock/data/quizData.js";
+import Service from "@/service/service";
 export default {
   components: {
     Header,
@@ -60,13 +59,21 @@ export default {
     return {
       title: "首页",
       swipe_img_list: [],
-      subject_list:[]
+      subject_list: []
     };
   },
-  mounted() {
-    this.$nextTick(() => {
-      this.swipe_img_list = swipe_img_list;
-      this.subject_list=subject_list;
+  created() {
+    Service.getSwipeImgList().then(res => {
+      if (res.code == 1) {
+        this.swipe_img_list = res.data;
+      }
+    });
+  },
+  activated() {
+    Service.getSubjectList().then(res => {
+      if (res.code == 1) {
+        this.subject_list = res.data;
+      }
     });
   }
 };

@@ -135,7 +135,10 @@ const router = new Router({
 router.beforeEach((to, from, next) => {
   if (to.meta.requiresAuth) {
     if (!store.state.is_login) {
-      Toast("请先登录");
+      Toast({
+        message: "请先登录",
+        position: "bottom"
+      });
       next({
         path: '/login',
         query: {

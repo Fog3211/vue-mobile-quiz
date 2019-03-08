@@ -25,22 +25,18 @@
 <script>
 import store from "@/store.js";
 export default {
-  props: {
-    new_msg_count: {
-      type: Number,
-      default: 0
-    },
-    is_login: {
-      type: Boolean,
-      default: false
-    }
-  },
   data() {
     return {};
   },
   computed: {
     user_theme() {
       return store.state.user_theme;
+    },
+    new_msg_count() {
+      return store.state.new_msg_count;
+    },
+    is_login() {
+      return store.state.is_login;
     }
   }
 };

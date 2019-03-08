@@ -30,6 +30,27 @@ const Service = {
     },
     getQuizById: (quiz_list_id) => {
         return axios.get(`/quiz/${quiz_list_id}`).then(res => res.data);
-    }
+    },
+    getLatestList: () => {
+        return axios.get('/latest_list').then(res => res.data);
+    },
+    getHottestList: () => {
+        return axios.get('/hottest_list').then(res => res.data);
+    },
+    getRecommendList: () => {
+        return axios.get('/recommend_list').then(res => res.data);
+    },
+    getSubjectList: () => {
+        return axios.get('/subject_list').then(res => res.data);
+    },
+    getSwipeImgList: () => {
+        return axios.get('/swipe_img_list').then(res => res.data);
+    },
+    getAvatarList: () => {
+        return axios.get('/avatar_list').then(res => res.data);
+    },
+    getThemeList: () => {
+        return axios.get('/theme_list').then(res => res.data);
+    },
 }
 export default Service;

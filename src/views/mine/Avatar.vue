@@ -16,10 +16,8 @@
 <script>
 import { Toast } from "mint-ui";
 import Header from "_c/Header.vue";
-import { avatar_list } from "@/mock/data/data.js";
 import Service from "@/service/service.js";
 import store from "@/store.js";
-
 export default {
   components: {
     Header
@@ -51,10 +49,12 @@ export default {
       });
     }
   },
-  mounted() {
-    this.$nextTick(()=> {
-      this.avatar_list = avatar_list;
-    });
+  created() {
+       Service.getAvatarList().then(res => {
+        if (res.code == 1) {
+          this.avatar_list = res.data;
+        }
+      });
   }
 };
 </script>
