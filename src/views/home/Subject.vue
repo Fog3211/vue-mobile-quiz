@@ -16,7 +16,7 @@
 <script>
 import Header from "_c/Header.vue";
 import Service from "@/service/service";
-import { all_quiz_list, subject_list } from "@/mock/data/quizData.js";
+import { all_quiz_list,subject_list } from "@/mock/data/quizData.js";
 export default {
   components: {
     Header

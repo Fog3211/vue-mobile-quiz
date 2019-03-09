@@ -246,17 +246,61 @@ Mock.mock('/swipe_img_list', 'get', () => {
         data: swipe_img_list
     }
 })
-//   获取轮播图片列表
+//   获取头像图片列表
 Mock.mock('/avatar_list', 'get', () => {
     return {
         code: 1,
         data: avatar_list
     }
 })
-//   获取轮播图片列表
+//   获取主题列表
 Mock.mock('/theme_list', 'get', () => {
     return {
         code: 1,
         data: theme_list
+    }
+})
+//   获取收藏夹状态
+Mock.mock('/get_collection_list_state', 'post', (params) => {
+    let user = JSON.parse(params.body);
+    let collection_list_state = [];
+    user_list.some((item) => {
+        if (item.username == user.username) {
+            if (item.collection_list_state) {
+                collection_list_state = item.collection_list_state;
+                return true;
+            } else {
+                return false;
+            }
+        }
+        return false;
+    })
+    return {
+        code: 1,
+        data: collection_list_state
+    }
+})
+//   更新收藏夹状态
+Mock.mock('/set_collection_list_state', 'post', (params) => {
+    let user = JSON.parse(params.body);
+    let list = user.list;
+    user_list.some((item) => {
+        if (item.username == user.username) {
+            if (item.collection_list_state) {
+                for (let i = 0; i < list.length; i++) {
+                    if (list[i]) {
+                        item.collection_list_state[i] = list[i]
+                    }
+                }
+                return true;
+            } else {
+                item.collection_list_state = list;
+                return true;
+            }
+        }
+        return false;
+    })
+    return {
+        code: 1
     }
 })

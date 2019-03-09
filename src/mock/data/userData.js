@@ -20,4 +20,6 @@ for (let i = 0; i < Math.random() * 7 + 7; i++) {
 export {
     user_list,
     user_msg,
+    collection_list,
+    collection_list_state
 }

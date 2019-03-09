@@ -23,10 +23,10 @@ export default {
     };
   },
   methods: {
-    modelClose: function() {
+    modelClose() {
       this.isModelShow = false;
     },
-    modelOpen: function() {
+    modelOpen() {
       this.isModelShow = true;
     }
   }

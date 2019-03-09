@@ -12,7 +12,7 @@
 export default {
   data() {
     return {
-      transitionName: "",
+      transitionName: ""
     };
   },
   watch: {
@@ -20,12 +20,21 @@ export default {
       let no_transition = [
         "register",
         "login",
+        "recommend",
+        "hottest",
+        "latest",
+        "mine",
+        "collection"
       ];
       if (
         no_transition.includes(to.name) &&
         no_transition.includes(from.name)
       ) {
         this.transitionName = "";
+        return;
+      }
+      if (to.name == "search" || from.name == "search") {
+        this.transitionName = "fade";
         return;
       }
       const toDepth = to.path.split("/").length;
@@ -37,7 +46,7 @@ export default {
           toDepth < fromDepth ? "slide-right" : "slide-left";
       }
     }
-  },
+  }
 };
 </script>
 <style lang="scss">
@@ -47,6 +56,7 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
 }
+
 .slide-right-enter-active,
 .slide-right-leave-active,
 .slide-left-enter-active,
@@ -70,5 +80,15 @@ export default {
 
 .slide-left-leave-active {
   transform: translate3d(-100%, 0, 0);
+}
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 200ms;
+  position: absolute;
+}
+
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
 }
 </style>
