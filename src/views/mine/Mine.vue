@@ -80,7 +80,10 @@ export default {
       MessageBox.confirm("确定注销登录?")
         .then(action => {
           store.commit("logout");
-          Toast("成功退出");
+          Toast({
+            message: "成功退出",
+            position: "bottom"
+          });
           this.$router.push("/login");
         })
         .catch(error => {

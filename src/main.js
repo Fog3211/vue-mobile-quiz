@@ -4,13 +4,15 @@ import router from './router'
 import store from './store'
 import './registerServiceWorker'
 
-import remConfig from './config/remConfig.js'
-import 'mint-ui/lib/style.css'
-import mock from './mock/index.js'
 
+import 'mint-ui/lib/style.css'
+
+import mock from './mock/index.js'
+import remConfig from './config/remConfig.js'
 import '_a/css/reset.css';
 import '_a/css/index.scss';
-import '_a/font/iconfont.css'
+import '_a/font/iconfont.css';
+
 
 Vue.config.productionTip = false;
 

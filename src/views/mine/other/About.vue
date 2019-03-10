@@ -20,10 +20,10 @@ import Header from "_c/Header.vue";
             return {
               title:"关于",
               developer:"Fog3211",
-              website:"",
-              date:"2019.2.26-2019.3",
-              technology:"本项目界面使用Vue3 + Vuex + Vue-router + Mint-UI + SCSS 开发,后台数据由 Mock 模拟生成。",
-              introduction:"登录注册 主题修改 未读消息通知 更换头像 题目搜索 修改个人信息 题目收藏",
+              website:"https://github.com/fog3211/vue-mobile-quiz",
+              date:"2019.2.26-2019.3.10",
+              technology:"本项目界面使用Vue-cli3 + Vuex + Vue-router + Mint-UI + SCSS 开发,后台数据由 Mock 模拟生成。",
+              introduction:"登录注册 主题修改 未读消息通知 更换头像 题目搜索 修改个人信息 题目收藏 长按删除 错题本等",
               last:"欢迎Star & Fork,感谢您的使用 ^_^"
             }
         },

@@ -53,10 +53,13 @@ const Service = {
         return axios.get('/theme_list').then(res => res.data);
     },
     getCollectionState(params) {
-        return axios.post('/get_collection_list_state',params).then(res => res.data);
+        return axios.post('/get_collection_list_state', params).then(res => res.data);
     },
-    setCollectionState(params){
-        return axios.post('/set_collection_list_state',params).then(res => res.data);
-    }
+    setCollectionState(params) {
+        return axios.post('/set_collection_list_state', params).then(res => res.data);
+    },
+    getAllQuiz() {
+        return axios.get('/all_quiz_list').then(res => res.data);
+    },
 }
 export default Service;

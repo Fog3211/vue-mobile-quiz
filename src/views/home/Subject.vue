@@ -7,7 +7,7 @@
       class="subject-box"
     >
       <li class="quiz_box" @click="selectQuiz(item)">
-        {{ all_quiz_list[item].quiz_title }}
+        {{ showTitleList(item) }}
       </li>
     </ul>
   </div>
@@ -16,7 +16,7 @@
 <script>
 import Header from "_c/Header.vue";
 import Service from "@/service/service";
-import { all_quiz_list,subject_list } from "@/mock/data/quizData.js";
+import store from "@/store.js";
 export default {
   components: {
     Header
@@ -38,26 +38,40 @@ export default {
           quiz_list_id: item
         }
       });
+    },
+    showTitleList(item) {
+      if (this.all_quiz_list[item]) {
+        return this.all_quiz_list[item].quiz_title;
+      }
     }
   },
   activated() {
-    this.all_quiz_list = all_quiz_list;
-    this.subject_list = subject_list;
-    this.subject_id = this.$route.params.subject_id;
-    let has_subject_quiz = this.subject_list.some(u => {
-      if (u.id == this.subject_id) {
-        this.subject_quiz_list = u.quiz_list_id;
-        return true;
+    Service.getAllQuiz().then(res => {
+      if (res.code == 1) {
+        this.all_quiz_list = res.data;
       }
-      return false;
     });
-    // 展示所有试题
-    if (!has_subject_quiz) {
-      all_quiz_list.forEach(u => {
-        this.subject_quiz_list.push(u.quiz_list_id);
-        this.subject_quiz_list = [...new Set(this.subject_quiz_list)];
-      });
-    }
+    this.subject_id = this.$route.params.subject_id;
+    Service.getSubjectList().then(res => {
+      if (res.code == 1) {
+        this.subject_list = res.data;
+
+        let has_subject_quiz = this.subject_list.some(u => {
+          if (u.id == this.subject_id) {
+            this.subject_quiz_list = u.quiz_list_id;
+            return true;
+          }
+          return false;
+        });
+        // 展示所有试题
+        if (!has_subject_quiz) {
+          this.all_quiz_list.forEach(u => {
+            this.subject_quiz_list.push(u.quiz_list_id);
+            this.subject_quiz_list = [...new Set(this.subject_quiz_list)];
+          });
+        }
+      }
+    });
   }
 };
 </script>

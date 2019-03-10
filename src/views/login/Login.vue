@@ -30,8 +30,8 @@
       return {
         title: "登录",
         login_form: {
-          username: "eee",
-          password: "eeeeee"
+          username: "",
+          password: ""
         },
         form_state: {
           username: "",
@@ -113,6 +113,12 @@
         },
         deep: true
       }
+    },
+    deactivated(){
+       this.login_form={
+          username: "",
+          password: "",
+        };
     }
   };
 </script>

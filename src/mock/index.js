@@ -239,6 +239,13 @@ Mock.mock('/subject_list', 'get', () => {
         data: subject_list
     }
 })
+// 获取所有题目 
+Mock.mock('/all_quiz_list', 'get', () => {
+    return {
+        code: 1,
+        data: all_quiz_list
+    }
+})
 //   获取轮播图片列表
 Mock.mock('/swipe_img_list', 'get', () => {
     return {
@@ -267,6 +274,7 @@ Mock.mock('/get_collection_list_state', 'post', (params) => {
     user_list.some((item) => {
         if (item.username == user.username) {
             if (item.collection_list_state) {
+                // console.log(item.collection_list_state);
                 collection_list_state = item.collection_list_state;
                 return true;
             } else {
@@ -275,6 +283,7 @@ Mock.mock('/get_collection_list_state', 'post', (params) => {
         }
         return false;
     })
+    // console.log(collection_list_state);
     return {
         code: 1,
         data: collection_list_state
@@ -286,10 +295,11 @@ Mock.mock('/set_collection_list_state', 'post', (params) => {
     let list = user.list;
     user_list.some((item) => {
         if (item.username == user.username) {
+            // console.log(item.collection_list_state);
             if (item.collection_list_state) {
                 for (let i = 0; i < list.length; i++) {
-                    if (list[i]) {
-                        item.collection_list_state[i] = list[i]
+                    if (list[i]!==null) {
+                        item.collection_list_state[i] = list[i];
                     }
                 }
                 return true;
@@ -300,6 +310,7 @@ Mock.mock('/set_collection_list_state', 'post', (params) => {
         }
         return false;
     })
+       
     return {
         code: 1
     }

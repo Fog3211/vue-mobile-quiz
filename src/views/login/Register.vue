@@ -30,9 +30,9 @@
       return {
         title: "注册",
         register_form: {
-          username: "eee",
-          password: "eeeeee",
-          repassword: "eeeeee"
+          username: "",
+          password: "",
+          repassword: ""
         },
         form_state: {
           username: "",
@@ -111,6 +111,13 @@
         },
         deep: true
       }
+    },
+    deactivated(){
+       this.register_form={
+          username: "",
+          password: "",
+          repassword: ""
+        };
     }
   };
 </script>
