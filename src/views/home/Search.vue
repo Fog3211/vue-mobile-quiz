@@ -96,7 +96,7 @@ export default {
         });
         return;
       }
-      let can_search = subject_list.some(u => {
+      let can_search = this.subject_list.some(u => {
         if (u.name == item) {
           this.$router.push({
             name: "subject",

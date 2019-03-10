@@ -22,7 +22,6 @@ Vue.component(Field.name, Field);
 Vue.component(Badge.name, Badge);
 Vue.component(Swipe.name, Swipe);
 Vue.component(SwipeItem.name, SwipeItem);
-Vue.component(Search.name, Search);
 
 remConfig();
 
