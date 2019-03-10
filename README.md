@@ -12,20 +12,12 @@ Vue2 + Vue-cli3 + Vuex + Vue-router + Mint-UI + Axios + SCSS + Mock + PWA
 
 > 预览地址：[https://fog3211.com/vue-mobile-quiz/dist/index.html](https://fog3211.com/vue-mobile-quiz/dist/index.html)
 
-## 图片展示  
+## 项目截图  
 
-![avatar](https://img.fog3211.com/FLN8M2CIR%7D%5BI2OOH1V0T0%5B1.png)  
-![avatar](https://img.fog3211.com/PZX8A__%25K@CLBN8T%60RZIAJ2.png)  
-![avatar](https://img.fog3211.com/VP02%60G%287A2XZOO%29%25NRQ8D$E.png)  
-![avatar](https://img.fog3211.com/I9VXOFYE%25_I4%7D~FQNSZ1TY4.png)  
-![avatar](https://img.fog3211.com/NG4W_D8%2832NM0O%258FHVPUFJ.png)  
-![avatar](https://img.fog3211.com/@%25%25GCT%7B3%6010%7DFHZF1XJ7E48.png)  
-![avatar](https://img.fog3211.com/JJ@ND28%28T%5BPW12CDR0%7DNFWM.png)  
-![avatar](https://img.fog3211.com/%5BONB%25B%5DROPUVV7%5B0%7D6N9%7B%28U.png)  
-![avatar](https://img.fog3211.com/Z5$YH%28%5D2V$TNT2%28AO4E%29E2X.png)  
-![avatar](https://img.fog3211.com/I%7DHYC%5BOK6_BGX493%25IH~X41.png)  
-![avatar](https://img.fog3211.com/84%5D2YZL%5DX%5DYPR_QS3M_J9%25F.png)  
-![avatar](https://img.fog3211.com/0UJHZM%29P8WH%250JJPB_WL%29%5BP.png)  
+![avatar](https://img.fog3211.com/FLN8M2CIR%257D%255BI2OOH1V0T0%255B1.png)  
+![avatar](https://img.fog3211.com/PZX8A__%2525K@CLBN8T%2560RZIAJ2.png)  
+![avatar](https://img.fog3211.com/VP02%2560G%25287A2XZOO%2529%2525NRQ8D$E.png)  
+![avatar](https://img.fog3211.com/I9VXOFYE%2525_I4%257D~FQNSZ1TY4.png)  
 
 ## 实现功能
 
@@ -80,4 +72,4 @@ npm run build
 
 ## 最后
 
-如果觉得我的项目还不错的话 ，就给个 star  鼓励一下吧。欢迎Fork&Star。
+欢迎 Fork & Star 。
