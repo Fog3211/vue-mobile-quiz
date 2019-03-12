@@ -10,6 +10,7 @@ Vue2 + Vue-cli3 + Vuex + Vue-router + Mint-UI + Axios + SCSS + Mock + PWA
 
 ## 预览
 
+> 手机扫码：![avatar](https://img.fog3211.com/1552372642.png)  
 > 预览地址：[https://fog3211.com/vue-mobile-quiz/dist/index.html](https://fog3211.com/vue-mobile-quiz/dist/index.html)
 
 ## 项目截图  
