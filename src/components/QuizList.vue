@@ -38,7 +38,7 @@ export default {
 
 <style scoped lang="scss">
 .list-card {
-  background: rgb(224, 217, 222);
+  background: rgb(236, 229, 234);
   margin-bottom: 1rem;
   .item-card {
     width: 100%;
@@ -46,13 +46,14 @@ export default {
     display: flex;
     align-items: flex-start;
     padding: 0.2rem 0;
-    border: 1px solid rgb(231, 230, 230);
+    border-top: 1px solid rgb(209, 203, 203);
+    border-bottom: 1px solid rgb(209, 203, 203);
     img {
       margin-left: 0.3rem;
       width: 1.4rem;
     }
     .info {
-      height: 1.8rem;
+      height: 2rem;
       padding: 0 0.3rem;
       display: flex;
       flex-direction: column;
@@ -65,8 +66,12 @@ export default {
       }
       .intro {
         text-indent: 0.2rem;
-        line-height: 0.32rem;
+        word-break: break-all;
         overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 4;
+        -webkit-box-orient: vertical;
         width: 100%;
       }
     }
